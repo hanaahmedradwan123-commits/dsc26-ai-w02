@@ -1,22 +1,11 @@
-# Framing: Rawaj Pay mule detection
-
-<!-- Write a few sentences under each heading about Rawaj Pay's mule detection.
-     Keep the four headings exactly as they are. Text inside these comments does not count.
-     The grader checks only that each heading has some text under it; your Track Mentor reads it. -->
-
 ## Decision
-
-<!-- What decision changes because of the model? Who acts on it, and how many cases a day
-     can they handle? What does each kind of error cost? -->
+Determining how many transactions should be reviewed manually for mule activity by the five analysts without overwhelming them. We need to set risk-score thresholds that balance fraud detection with analyst capacity.
 
 ## Metric
-
-<!-- Which metric matches that decision, and at what threshold? Why not accuracy? -->
+We measure performance using Precision, Recall, and an Expected Cost framework. This allows us to trade off false positives (analyst review time) against false negatives (uncaught fraud losses) based on business cost parameters.
 
 ## Baseline
-
-<!-- What happens today without the model? What must the model beat, on the client's terms? -->
+A rule-based static heuristic identifying obvious mule indicators (such as immediate post-creation transfers or known blacklisted accounts), serving as the minimum benchmark before applying model scores.
 
 ## Classical ML or LLM
-
-<!-- Classical model, LLM, a rule, or a mix? Argue from the decision table in the session. -->
+Using tabular machine learning algorithms like Gradient Boosted Trees or Logistic Regression on engineered transaction traits. This provides fast, interpretable risk scoring suitable for real-time transfer auditing without non-deterministic LLM overhead.
